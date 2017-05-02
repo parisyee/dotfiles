@@ -1,0 +1,66 @@
+# vim:ft=sh:
+
+# DULL=0
+# BG_NULL=00
+
+# FG_RED=31
+# FG_GREEN=32
+# FG_YELLOW=33
+# FG_BLUE=34
+# FG_VIOLET=35
+# FG_CYAN=36
+# FG_WHITE=37
+
+# ESC="\033"
+NORMAL="\033[m"
+RESET="\033[0;37;00m"
+
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+VIOLET="\033[0;35m"
+CYAN="\033[0;36m"
+
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWCOLORHINTS=
+GIT_PS1_DESCRIBE_STYLE="branch"
+
+git_or_pwd() {
+  local _git_ps1="$(__git_ps1 "%s")"
+
+  if [[ -n ${_git_ps1} ]]; then
+    local _git_repo_path=$(git rev-parse --show-toplevel 2> /dev/null)
+    local _git_repo_name=$(basename "${_git_repo_path}")
+    local _git_branch_name=$(echo -n "${_git_ps1}" | sed 's/[\*\+\$\%]//g' | sed 's/ $//g' | sed 's/ |/|/g')
+    local _git_user_initials=$(git config user.initials)
+    local _git_user_email=$(git config user.email)
+    local _git_sha=$(git rev-parse --short HEAD 2>/dev/null)
+
+    if [[ -z $_git_user_initials ]]; then
+      local git_user="${_git_user_email}"
+    else
+      local git_user="${_git_user_initials}"
+    fi
+    local pretty_git_user=" ${CYAN}${git_user}"
+
+    local repo_sub_directory=${PWD#$_git_repo_path}
+    local git_repo="${_git_repo_name}${repo_sub_directory}"
+    local pretty_git_repo=" ${YELLOW}${git_repo}"
+
+    if echo -n "${_git_ps1}" | grep -qe '\*\|\+\|\$\|\%'; then
+      local pretty_git_branch_name=" ${RED}[${_git_branch_name} ${_git_sha}]"
+    else
+      local pretty_git_branch_name=" ${GREEN}[${_git_branch_name} ${_git_sha}]"
+    fi
+
+    echo -ne "${pretty_git_user}${pretty_git_repo}${pretty_git_branch_name}"
+
+  else
+    local _pwd=`printf "%s" $(echo -n $PWD | sed "s:$HOME:~:")`
+    echo -ne " ${YELLOW}${_pwd}"
+  fi
+}
+
+export PS1="${YELLOW}--- ${NORMAL}\u@${BLUE}\h\$(git_or_pwd)${RESET}\n$ "

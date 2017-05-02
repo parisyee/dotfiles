@@ -1,0 +1,8 @@
+# system
+alias laptop_install="sh ~/dev/laptop/mac"
+
+# navigation
+alias spd="cd ~/Google\ Drive/screenplays/"
+
+# rails
+alias isp="invoker start Procfile.dev"
