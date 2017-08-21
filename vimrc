@@ -45,7 +45,7 @@ Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 
 Plugin 'chriskempson/vim-tomorrow-theme'
-" Make sure `cp ~/.vim/bundles/vim-tomorrow-theme/colors/*.vim ~/.vim/colors/`
+" Make sure to `mkdir -p ~/.vim/colors; cp ~/.vim/bundle/vim-tomorrow-theme/colors/*.vim ~/.vim/colors/`
 colorscheme Tomorrow-Night-Eighties
 
 Plugin 'vim-syntastic/syntastic'
