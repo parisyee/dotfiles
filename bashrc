@@ -15,3 +15,6 @@ fi
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [ -f /Users/paris/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.bash ] && . /Users/paris/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.bash
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
