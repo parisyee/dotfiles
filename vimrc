@@ -34,6 +34,8 @@ Plugin 'tpope/vim-commentary'
 xmap <leader>/ <Plug>Commentary
 nmap <leader>/ <Plug>CommentaryLine
 
+Plugin 'vim-ruby/vim-ruby'
+
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'tpope/vim-repeat'
@@ -45,6 +47,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-airline'
 
 Plugin 'ervandew/supertab'
+
+Plugin 'tpope/vim-rails'
+
+Plugin 'tpope/vim-abolish'
 
 Plugin 'chriskempson/vim-tomorrow-theme'
 " Make sure to `mkdir -p ~/.vim/colors; cp ~/.vim/bundle/vim-tomorrow-theme/colors/*.vim ~/.vim/colors/`
