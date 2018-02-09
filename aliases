@@ -6,3 +6,6 @@ alias spd="cd ~/Google\ Drive/screenplays/"
 
 # rails
 alias isp="invoker start Procfile.dev-server"
+
+# python
+alias python="python3"
