@@ -9,3 +9,5 @@ alias isp="invoker start Procfile.dev"
 
 # python
 alias python="python3"
+
+source ~/.aliases.local
