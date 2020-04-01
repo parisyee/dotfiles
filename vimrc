@@ -60,7 +60,7 @@ Plugin 'vim-syntastic/syntastic'
 
 Plugin 'folke/AutoTag'
 let g:autotagExcludeSuffixes="tml.xml.text.txt.vim"
-map <leader>rt :!ctags --extra=+f --exclude=.git --exclude=log --exclude=doc -R *<CR><CR>
+map <leader>rt :!ctags --extra=+f --exclude=.git --exclude=log --exclude=doc --exclude=node_modules -R *<CR><CR>
 map <C-\> :tnext<CR>
 
 Plugin 'thoughtbot/vim-rspec'
