@@ -8,6 +8,7 @@
 	email = paris.yee@gmail.com
 [core]
 	excludesfile = ~/.gitignore
+	pager = less -FXRS -x2
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

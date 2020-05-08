@@ -27,8 +27,10 @@ map \ :NERDTreeToggle<CR>
 map \| :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 
-Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+" FZF
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+map <C-P> :Files<CR>
 
 Plugin 'tpope/vim-commentary'
 xmap <leader>/ <Plug>Commentary
@@ -63,12 +65,12 @@ let g:autotagExcludeSuffixes="tml.xml.text.txt.vim"
 map <leader>rt :!ctags --extra=+f --exclude=.git --exclude=log --exclude=doc --exclude=node_modules -R *<CR><CR>
 map <C-\> :tnext<CR>
 
-Plugin 'thoughtbot/vim-rspec'
-" RSpec.vim mappings
-map <leader>t :call RunCurrentSpecFile()<CR>
-map <leader>s :call RunNearestSpec()<CR>
-map <leader>l :call RunLastSpec()<CR>
-map <leader>a :call RunAllSpecs()<CR>
+" Plugin 'thoughtbot/vim-rspec'
+" " RSpec.vim mappings
+" map <leader>t :call RunCurrentSpecFile()<CR>
+" map <leader>s :call RunNearestSpec()<CR>
+" map <leader>l :call RunLastSpec()<CR>
+" map <leader>a :call RunAllSpecs()<CR>
 
 Plugin 'mattn/emmet-vim'
 
@@ -84,8 +86,8 @@ call vundle#end()            " required
 " =========== END FROM VUNDLE =====================
 
 " split screen
-:noremap <leader>v :vsp<CR>
-:noremap <leader>h :split<CR>
+:noremap <leader>v :vsp<CR><C-w>l
+:noremap <leader>h :split<CR><C-w>j
 
 " toggle fullscreen
 :noremap tt :tab split<CR>
@@ -109,6 +111,9 @@ set noswapfile
 " Dont wrap lines
 set nowrap
 
+" Highlight search
+set hlsearch
+
 " Remove scroll bars in MacVim
 set guioptions-=L
 set guioptions-=r
@@ -128,18 +133,18 @@ endif
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 au BufNewFile,BufFilePre,BufRead *.md setlocal textwidth=80
 
+" Copy current file path
+nmap <leader>cl :let @+=expand("%:p")<CR>
+nmap <D-C> :let @+=expand("%:p")<CR>
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " Define the Ag command
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
+" to grep word under cursor
+nnoremap <leader>a :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
