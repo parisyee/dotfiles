@@ -42,7 +42,7 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'tpope/vim-repeat'
 
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
 
 Plugin 'tpope/vim-surround'
 
@@ -117,6 +117,9 @@ set hlsearch
 " Remove scroll bars in MacVim
 set guioptions-=L
 set guioptions-=r
+
+" Enable folding
+set foldmethod=syntax
 
 " colorcolumn on active windows only
 if exists('+colorcolumn')
